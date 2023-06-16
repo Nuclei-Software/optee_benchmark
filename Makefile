@@ -22,7 +22,7 @@ LIBYAML_OUT_DIR = $(OUT_DIR)/libyaml/out
 .PHONY: libyaml
 libyaml:
 	$(AT)test -d $(LIBYAML_OUT_DIR) || mkdir -p $(LIBYAML_OUT_DIR)
-	cd $(LIBYAML_SRC_DIR) && ./bootstrap && \
+	cd $(LIBYAML_SRC_DIR) && ./bootstrap && sed -i 's/riscv64/riscv/' config/config.sub && \
 	./configure --host=$(MULTIARCH) \
 	--prefix=$(LIBYAML_OUT_DIR) CC=$(CC) && \
 	$(MAKE) && $(MAKE) install
